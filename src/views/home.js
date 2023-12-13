@@ -7,7 +7,7 @@ class Home {
     constructor() {}
 
     generateHome() {
-        let home = document.querySelector("#contenido");
+        let home = document.querySelector("#principal");
         home.innerHTML = `
         <div class="bienvenida">
             <span class="text1">Welcome</span>

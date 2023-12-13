@@ -5,7 +5,7 @@ let access_token = ";";
 import { router } from "../router/router";
 import '../assets/scss/login.css';
 
-import { validarForm } from "../utils/validarLogin";
+import { validarForm, validarLogin } from "../utils/validarLogin";
 import { loginUser, registerUser } from "../services/users";
 
 class Login {
@@ -21,7 +21,7 @@ class Login {
         <div class = "form-box login">
             <h2>Login</h2>
             <p id="loginError"></p>
-            <form action="" method="post" >
+            <form>
                 <div class="input-box">
                     <span class="icon">
                         <ion-icon name="mail"></ion-icon>
@@ -38,7 +38,7 @@ class Login {
                     <label>Password</label>
                 </div>
 
-                <button type="button" id="botonLogin">Login</button>
+                <button type="submit" id="botonLogin">Login</button>
                 <div class="login-register">
                     <p>Don't have an account? 
                         <a href="#/register" class="register-link">Register</a>
@@ -72,11 +72,11 @@ class Login {
         let email = login.querySelector("#inputLogin").value;
         let password = login.querySelector("#inputPassword").value;
         
-        if (validarForm(email, password)) {
+        if (validarLogin(email, password)) {
             await loginUser(email, password).then(status => {
                 if(status.success === true) {
                     alert("Sesion Iniciada!");
-                    window.location.hash = "#/home";
+                    window.location.hash = "#/profile";
                 } else {
                     
                     alert("Usuario o contraseña incorrectos!");
@@ -96,8 +96,6 @@ class Login {
     
     });
 
-
-  
   }
     
     generateRegister() {
@@ -110,14 +108,7 @@ class Login {
         <div class = "form-box register">
         <h2>Registro</h2>
         <p id="registerError"></p>
-        <form action="" method="post" >
-                <div class="input-box">
-                    <span class="icon">
-                        <ion-icon name="person"></ion-icon>
-                    </span>
-                    <input type="text" id="username" required>
-                    <label>Username</label>
-                </div>
+        <form>
 
                 <div class="input-box">
                 <span class="icon">
@@ -134,7 +125,14 @@ class Login {
                     <input type="password" id="signuppassword" required>
                     <label>Password</label>
                 </div>
-                <button type="button" id="botonRegistro">Registro</button>
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="lock-closed"></ion-icon>
+                    </span>
+                    <input type="password" id="signuppassword2" required>
+                    <label>Repeat password: </label>
+                </div>
+                <button type="submit" id="botonRegistro">Registro</button>
                 <div class="login-register">
                     <p>Already have an account? 
                         <a href="#/login" class="login-link">Login</a>
@@ -147,29 +145,34 @@ class Login {
     
     `;
 
-
-    
-    register.querySelector('#botonRegistro').addEventListener('click', async() => {
+    register.querySelector('#botonRegistro').addEventListener('click', async(event) => {
+        event.preventDefault();
         let email = register.querySelector("#signupemail").value;
         let password = register.querySelector("#signuppassword").value; 
-        let username = register.querySelector('#username').value;
+        let password2 = register.querySelector("#signuppassword2").value;
 
-        if(validarForm(email,password)) {
+        if (email === "" || password === "" || password2 === "") {
+            register.querySelector('#registerError').innerHTML =  "Debes introducir datos.";
+        } else if (password !== password2 || password.length < 8 || password2.length < 8) {
+            register.querySelector('#registerError').innerHTML =  "Las contraseñas deben ser iguales y tener al menos 8 caracteres.";
+        } else if (!email.includes("@") || !email.includes(".")) {
+            register.querySelector('#registerError').innerHTML =  "La dirección de correo electrónico no es válida.";
+            return false; 
+        }
+
+
 
             await registerUser(email,password).then((status) => {
                 if (status.success === true) {
                     alert("¡Usuario creado!");
-                    window.location.reload();
-                    
+                    window.location.hash = "#/login";
                     
                 } else {
                     register.querySelector('#registerError').innerHTML = status.errorText;
                     
                 }
             });
-        } else {
-            register.querySelector('#registerError').innerHTML =  "Nickname o email y contraseña deben de estar introducidos";
-        }
+
     });
         
 }

@@ -1,6 +1,7 @@
-export { validarForm };
+export { validarLogin };
 
-function validarForm(login, passw) {
+
+function validarLogin(login, passw) {
     if(login === null || passw === null || login === "" || passw === "") {
         return false;
     }
