@@ -1,6 +1,6 @@
 export { getProfile, updateProfile, loginUser, registerUser, loginWithToken, isLogged, logout, forgotPassword };
 
-import { loginSupabase, signUpSupabase, logoutSupabase, recoverPasswordSupabase } from "./PeticionesApi.js";
+import { loginSupabase, signUpSupabase, logoutSupabase, recoverPasswordSupabase, getData, updateData, createData } from "./PeticionesApi.js";
 
 
 function expirationDate(expires_in){
@@ -104,6 +104,7 @@ async function updateProfile(profile) {
     const uid = localStorage.getItem('uid');
     const responseGet = await getData(`profiles?id=eq.${uid}&select=*`, access_token);
     console.log(responseGet);
+    
     const { avatar_url } = responseGet[0];
     responseGet[0].avatar_blob = false;
     if (avatar_url) {

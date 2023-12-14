@@ -1,8 +1,8 @@
 export { fileRequest, getFileRequest, supaRequest, loginSupabase, signUpSupabase, logoutSupabase, recoverPasswordSupabase, getData, createData, updateData }
 
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRueHhndWlwaGNhZ2ptYXViaXRpIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTgzMzkwMTMsImV4cCI6MjAxMzkxNTAxM30.w4yWhNDmDJC7h-D5kMG26a2YiBIBw1-tc41FpElh5xI";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZnaXp2ZHB0a3VreHZ2bm9ma2NuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDI1MTE5MzIsImV4cCI6MjAxODA4NzkzMn0.g_39IVMiB_UHkGj-jnkC0wftLdSDeoYM37shB7LiAfc";
 
-const URL_BASE = "https://dnxxguiphcagjmaubiti.supabase.co";
+const URL_BASE = "https://vgizvdptkukxvvnofkcn.supabase.co";
 const headers = {
     apiKey: SUPABASE_KEY,
     "Content-Type": "application/json"
