@@ -9,6 +9,7 @@ import { olvidoPass } from "../views/olvidoPass";
 import { Profile } from "../views/profile";
 
 const router = (route) => {
+
     let main = document.querySelector('#principal');
     let menu = document.querySelector('#menu');
 

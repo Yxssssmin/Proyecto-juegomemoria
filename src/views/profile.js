@@ -25,6 +25,7 @@ class Profile {
 
       divLogin.innerHTML = `
         <form action="action_page.php" id="formProfile" style="border: 1px solid #ccc">
+        
         <div class="container">
             <h1>Profile</h1>
       

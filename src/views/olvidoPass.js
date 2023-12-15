@@ -21,16 +21,16 @@ function form() {
 
     let formOlvidoPassHtml = `
     <div class="wrapper2">
-    <div class = "form-box login">
-        <div class="input-box">
-            <span class="icon">
-                <ion-icon name="mail"></ion-icon>
-            </span>
-            <input type="text" name="user" id="user-olvidoPass">
-            <label for="user-olvidoPass">Email:</label>
+        <div class = "form-box login">
+            <div class="input-box">
+                <span class="icon">
+                    <ion-icon name="mail"></ion-icon>
+                </span>
+                <input type="text" name="user" id="user-olvidoPass">
+                <label for="user-olvidoPass">Email:</label>
+            </div>
         </div>
-        </div>
-        </div>
+    </div>
     `;
 
     formOlvidoPass.innerHTML = formOlvidoPassHtml;
