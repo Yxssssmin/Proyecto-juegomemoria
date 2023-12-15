@@ -19,11 +19,15 @@ const router = (route) => {
     switch (route) {
 
         case '#/':
-            main.innerHTML = "";
-            let home = new Home();
-            home.generateHome();
-            window.location.hash = "#/login";
-            toggleMenuVisibility(isLogged());
+            if (isLogged()) {
+                main.innerHTML = "";
+                let home = new Home();
+                home.generateHome();  // Puedes pasar el nombre de usuario si es necesario
+                toggleMenuVisibility(true);
+            } else {
+                window.location.hash = "#/login";
+                toggleMenuVisibility(false);
+            }
             break;
 
         case "#/login":
@@ -35,6 +39,12 @@ const router = (route) => {
             } else {
                 window.location.hash = "#/";
             }
+            break;
+        
+        case "#/home":
+            main.innerHTML = "";
+            let home = new Home();
+                home.generateHome();
             break;
 
         case "#/register":

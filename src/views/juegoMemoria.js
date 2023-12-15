@@ -10,8 +10,6 @@ import Imagen6 from "../assets/img/img-6.png";
 import Imagen7 from "../assets/img/img-7.png";
 import Imagen8 from "../assets/img/img-8.png";
 
-
-
 class Game {
   constructor() {}
 

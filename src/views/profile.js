@@ -1,22 +1,29 @@
 export { Profile };
 
 import { getProfile, updateProfile } from "../services/users.js";
-import '../assets/scss/profile.css';
+import { getFileRequest } from "../services/PeticionesApi.js";
+import { router } from "../router/router.js";
+import "../assets/scss/profile.css";
 
 class Profile {
+  constructor() {}
 
-    constructor() {}
+  generateProfile() {
+    let divLogin = document.querySelector("#principal");
+    divLogin.classList.add("formulari_centrat");
 
-    generateProfile() {
-        const divLogin = document.createElement('div');
-        divLogin.classList.add('formulari_centrat');
+    getProfile().then((dataProfile) => {
+      if (dataProfile && dataProfile.length > 0) {
+        dataProfile = dataProfile[0];
+        console.log(dataProfile);
+      } else {
+        console.error(
+          "No se encontraron datos del perfil o el perfil está vacío."
+        );
+        dataProfile = {}; // Establecer un objeto vacío para evitar problemas con la desestructuración
+      }
 
-        getProfile().then((dataProfile) => {
-            dataProfile = dataProfile[0];
-            console.log(dataProfile);
-        
-
-        divLogin.innerHTML = `
+      divLogin.innerHTML = `
         <form action="action_page.php" id="formProfile" style="border: 1px solid #ccc">
         <div class="container">
             <h1>Profile</h1>
@@ -25,7 +32,7 @@ class Profile {
 
             <label for="email"><b>Email</b></label>
             <input id="signupemail" type="text" placeholder="Enter Email" name="email" required readonly
-                value="${localStorage.getItem('email')}"/>
+                value="${localStorage.getItem("email")}"/>
 
             <label for="psw"><b>Password</b></label>
             <input type="password" id="signuppassword" placeholder="Enter Password" name="psw" required />
@@ -44,7 +51,9 @@ class Profile {
             <label for="web"><b>Web Site</b></label>
             <input type="text" placeholder="web" name="website" value = "${dataProfile.website}" />
             <div>
-                <img class="avatar_profile" style="max-width: 200px" id="avatar_prev" src="${dataProfile.avatar_blob ? dataProfile.avatar_blob : ''}"/>
+                <img class="avatar_profile" style="max-width: 200px" id="avatar_prev" src="${
+                  dataProfile.avatar_blob ? dataProfile.avatar_blob : ""
+                }"/>
             </div>
 
             <label for="avatar"><b>Avatar</b></label>
@@ -59,28 +68,33 @@ class Profile {
   
   `;
 
-  divLogin.querySelector('#update').addEventListener('click', async () => {
-    const formData = new FormData(divLogin.querySelector('#formProfile'));
-    const { username, full_name, website, avatar} = Object.fromEntries(formData);
-    console.log({username, full_name, website, avatar});
+      divLogin.querySelector("#update").addEventListener("click", async () => {
+        const formData = new FormData(divLogin.querySelector("#formProfile"));
+        const { username, full_name, website, avatar } =
+          Object.fromEntries(formData);
+        console.log({ username, full_name, website, avatar });
 
-    const dataUpdate = await updateProfile({ username, full_name, website, avatar});
+        const dataUpdate = await updateProfile({
+          username,
+          full_name,
+          website,
+          avatar,
+        });
 
-    route('#/profile');
-  });
+        router("#/profile");
+      });
 
-  function encodeImageFileAsURL(element) {
-    const file = element.files[0];
-    if (file) {
-      divLogin.querySelector('#avatar_prev').src = URL.createObjectURL(file);
-    }
+      function encodeImageFileAsURL(element) {
+        const file = element.files[0];
+        if (file) {
+          divLogin.querySelector("#avatar_prev").src =
+            URL.createObjectURL(file);
+        }
+      }
+
+      divLogin.querySelector("#avatar").addEventListener("change", function () {
+        encodeImageFileAsURL(this);
+      });
+    });
   }
-
-    divLogin.querySelector('#avatar').addEventListener('change', function () { 
-        encodeImageFileAsURL(this); 
-    });
-    
-    });
-
-    }
 }

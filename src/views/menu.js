@@ -11,6 +11,7 @@ class Menu {
     let imagen = new Image();
     imagen.src = Icon;
     let logoutIs = false;
+
     let menuTemplate = document.querySelector("#menu");
     menuTemplate.innerHTML = `  
 
@@ -41,13 +42,13 @@ class Menu {
   
   `;
 
-  if (logoutIs) {
+
     menuTemplate.querySelector("#logout").addEventListener("click", () => {
       logout();
       window.location.reload(); // Actualizo pagina
 
     });
-  }
+
 
   }
   

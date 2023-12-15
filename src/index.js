@@ -7,7 +7,7 @@ import { router } from './router/router';
     document.addEventListener("DOMContentLoaded", function () {
       let main = document.querySelector("#menu");
       let menu = new Menu();
-      main.append(menu.generateMenu());
+      menu.generateMenu();
 
       router(window.location.hash);
   
@@ -15,5 +15,6 @@ import { router } from './router/router';
         router(window.location.hash);
       });
     });
+
 
 })();
