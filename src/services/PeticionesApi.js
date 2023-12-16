@@ -99,7 +99,7 @@ async function signUpSupabase(email, password) {
 
 async function logoutSupabase(token) { 
     let url = `${URL_BASE}/auth/v1/logout`;
-    let headersAux = {...headers, "Authorization" :"Bearer "+token}; // Destructuring
+    let headersAux = {...headers, "Authorization" :"Bearer "+token};
     let data = await supaRequest(url,'post', headersAux, {});
     return data;
 }
@@ -113,8 +113,8 @@ async function recoverPasswordSupabase(email) {
 
 async function getData(URI,token){
     let url = `${URL_BASE}/rest/v1/${URI}`;
-    let headersAux = {...headers, "Authorization" :"Bearer "+token}; // Destructuring
-    let data = await supaRequest(url,'get',headersAux); // Las peticiones get no me funcionan y no se porque, pienso que las hago bien
+    let headersAux = {...headers, "Authorization" :"Bearer "+token};
+    let data = await supaRequest(url,'get',headersAux); 
     return data;
 }
 
@@ -130,7 +130,7 @@ async function updateData(URI,token,data){
 
 async function createData(URI,token,data){
     let url = `${URL_BASE}/rest/v1/${URI}`;
-    let headersAux = {...headers, // Desstucturing
+    let headersAux = {...headers, 
         Authorization: `Bearer ${token}`,
         "Prefer" : "return=minimal"
     };

@@ -54,8 +54,8 @@ describe('Funciones del Juego', function() {
     });
   
     it('Login functionality', async () => {
-      const email = 'yasmintate02@gmail.com';
-      const password = 'Yasmin123';
+      const email = 'ejemplo@gmail.com';
+      const password = 'ejemplo123';
   
       // Mockear la respuesta del servicio de login
       spyOn(loginUser, 'loginUser').and.returnValue(Promise.resolve({ success: true }));
@@ -83,8 +83,8 @@ describe('Funciones del Juego', function() {
     });
 
     it('Registration functionality', async () => {
-      const email = 'yasmintate02@gmail.com';
-      const password = 'Yasmin123';
+      const email = 'ejemplo@gmail.com';
+      const password = 'ejemplo123';
   
       // Mockear la respuesta del servicio de registro
       spyOn(registerUser, 'registerUser').and.returnValue(Promise.resolve({ success: true }));
