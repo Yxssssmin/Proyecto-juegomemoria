@@ -28,7 +28,7 @@ input {
     box-sizing: border-box;
 }
 
-#update {
+#update, #chgpass{
     background-color: #4caf50;
     color: white;
     padding: 10px 15px;

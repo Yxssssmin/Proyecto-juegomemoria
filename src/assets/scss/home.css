@@ -27,7 +27,8 @@
 
 .text2 {
   font-size: 30px;
-  color: #6ab04c;
+  color: #9aff6e;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 @keyframes ani {

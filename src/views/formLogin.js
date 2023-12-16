@@ -153,14 +153,14 @@ class Login {
 
         if (email === "" || password === "" || password2 === "") {
             register.querySelector('#registerError').innerHTML =  "Debes introducir datos.";
+            return false
         } else if (password !== password2 || password.length < 8 || password2.length < 8) {
             register.querySelector('#registerError').innerHTML =  "Las contraseñas deben ser iguales y tener al menos 8 caracteres.";
+            return false;
         } else if (!email.includes("@") || !email.includes(".")) {
             register.querySelector('#registerError').innerHTML =  "La dirección de correo electrónico no es válida.";
             return false; 
         }
-
-
 
             await registerUser(email,password).then((status) => {
                 if (status.success === true) {

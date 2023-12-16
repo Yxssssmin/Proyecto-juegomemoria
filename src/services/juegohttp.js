@@ -1,22 +1,26 @@
-import { updateData, createData, getData } from './PeticionesApi.js';
-
 export { saveGame, getAllGames, updateGame, getGame, getAvailableGames };
 
-// Puedes establecer la URL_BASE como una constante global si es necesario
+import { updateData, createData, getData } from './PeticionesApi.js';
+
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZnaXp2ZHB0a3VreHZ2bm9ma2NuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDI1MTE5MzIsImV4cCI6MjAxODA4NzkzMn0.g_39IVMiB_UHkGj-jnkC0wftLdSDeoYM37shB7LiAfc';
 
 // Función para guardar una nueva partida en la tabla 'partidas'
 async function saveGame(intentos, parejas_encontradas, duracion, usuario_id) {
-  const token = localStorage.getItem('access_token');
+  
+  try {
+    const token = localStorage.getItem('access_token');
+    const newGame = await createData('partidas', token, {
+      intentos,
+      parejas_encontradas,
+      duracion,
+      usuario_id,
+    });
 
-  const newGame = await createData('partidas', token, {
-    intentos,
-    parejas_encontradas,
-    duracion,
-    usuario_id,
-  });
-
-  return newGame;
+    return newGame;
+  } catch (error) {
+    console.error('Error in saveGame:', error);
+    throw error; 
+  }
 }
 
 // Función para actualizar el estado de una partida en la tabla 'partidas'
@@ -49,6 +53,5 @@ async function getAllGames(usuario_id) {
 async function getAvailableGames() {
   const token = localStorage.getItem('access_token');
   const data = await getData('partidas?started.eq.false&select=*', token);
-  // Puedes aplicar lógica adicional según tus necesidades
   return data;
 }

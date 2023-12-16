@@ -1,4 +1,4 @@
-export { olvidoPass };
+export { olvidoPass, form };
 
 import { forgotPassword } from "../services/users.js";
 import '../assets/scss/login.css';

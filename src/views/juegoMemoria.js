@@ -73,7 +73,8 @@ class Game {
 
         if(parejas == 8) {
           setTimeout(() => {
-            return reiniciarJuego();
+            alert('¡Felicidades! Has completado el juego.');
+            reiniciarJuego();
 
           }, 1000)
         }
@@ -132,7 +133,6 @@ class Game {
       cards.forEach((tarjeta, index) => {
         tarjeta.classList.remove('vuelta');
 
-        // PREGUNTAR PROFESOR IMAGENES
         let imgEtiqueta = tarjeta.querySelector('img');
      
         //imgEtiqueta.src = `./src/assets/img/img-${fichas[index]}.png`;
@@ -149,4 +149,5 @@ class Game {
     });
 
   }
+
 }
