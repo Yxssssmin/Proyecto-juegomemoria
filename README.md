@@ -6,6 +6,7 @@ Se ha implementado un sistema de autenticación donde los usuarios pueden regist
 Si aún no tienes cuenta, puedes utilizar las siguientes credenciales para acceder a la página principal:
 
 Email: yasmintate02@gmail.com
+
 Contraseña: Yasmin123
 
 ## JUEGO DE MEMORIA:
@@ -26,3 +27,5 @@ Puedes cerrar sesión en cualquier momento.
 Los usuarios tienen perfiles personalizables donde pueden actualizar información como nombre de usuario, nombre completo, avatar y website.
 
 ## TESTS
+
+Tests de login, registro y el juego de memoria.
