@@ -9,6 +9,10 @@ Email: yasmintate02@gmail.com
 
 Contraseña: Yasmin123
 
+## OLVIDO PASSWORD:
+
+Cuando introduces mal los datos en el login, automáticamente te muestra un enlace abajo que te redirecciona a otra pagina (/olvidoPass). Una vez pones el email te manda un correo donde puedes recuperar la contraseña.
+
 ## JUEGO DE MEMORIA:
 
 El juego de memoria presenta una interfaz interactiva con cartas que los usuarios deben emparejar.
